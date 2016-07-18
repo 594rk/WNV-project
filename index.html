@@ -1,0 +1,164 @@
+<!--
+*		AUTHORS: Martin Pozniak, Calvin Bina
+*		Updated: 7/7/16
+*		Decription: Visualization website querying WNV data from Google fusion tables and using google maps API
+-->
+<!docType html>
+<html>
+	<head>
+		<meta charset="UTF-8">	
+		<div id="headerLine">
+			<img src="http://engineering.und.edu/_files/images/logo-engineering-dark.png" width="650" height="70">
+			<!--<hr color=#669900 size="6" width="100%"/>-->
+		</div>
+		<title> ND TrapCount</title>
+		<h1>North Dakota Mosquito Virus Risk Assesment Map</h1><hr color=#669900 width="50%">
+		<link href="styles/main.css" rel="stylesheet" type="text/css" />
+		<!--load jQuery 3.0-->
+		<script src="jquery-3.0.0.js"></script>
+		<!--lOAD MAP.JS-->
+		<script type="text/javascript" src="map.js"></script>
+		<!-- Load vars.js which includes data on counties -->
+		<script type="text/javascript" src="vars.js"></script>
+		<!--**************************************************************-->
+		<script async defer
+    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaDz7T5vCbVA_8JD2jA-GzGUCSrlD5ZI0">
+    	</script>
+
+    	<script type="text/javascript">
+    		window.addEventListener("load", initialize, false); //waits until the window is fully loaded before calling initialization of the map.
+    	</script>
+	</head>
+	
+	<body>
+
+<!---------------------------------------------CREATE THE MAP AND MAP MENU------------------------------------------------------------------------------------------>
+
+		<div class="map-options"><!--START DIV FOR THE MAP OPTIONS MENU-->
+			<div id="googleMap" class="createMap"></div><!--DIV THAT CREATES THE MAP ON SCREEN REALTIVE TO THE MENU-->
+			<center><strong>Map Options</strong></center>
+			<form>
+
+				<div id="selections"> <!--START DIV FOR YEAR SELECTION-->
+					<label>Year: </label>
+					<select id="year">
+						<option value="sum2016">Summer 2016</option>
+	                    <option selected="seleected" value="2015">2015</option>
+	                    <option value="2014">2014</option>
+	                    <option value="2013">2013</option>
+	                    <option value="2012">2012</option>
+	                    <option value="2011">2011</option>
+	                    <option value="2010">2010</option>
+	                    <option value="2009">2009</option>
+	                    <option value="2008">2008</option>
+	                    <option value="2007">2007</option>
+	                    <option value="2006">2006</option>
+					</select>
+				</div> <!--END DIV FOR YEAR SELECTION-->
+
+				<div id="selections">
+					<label>Week: </label>
+					<select id="weekOfSummer">
+						<option value="1">1</option>
+	                    <option value="2">2</option>
+	                    <option value="3">3</option>
+	                    <option value="4">4</option>
+	                    <option value="5">5</option>
+	                    <option value="6">6</option>
+	                    <option value="7">7</option>
+	                    <option value="8">8</option>
+	                    <option value="9">9</option>
+	                    <option value="10">10</option>
+	                    <option value="11">11</option>
+	                    <option value="12">12</option>
+	                    <option value="13">13</option>
+	                    <option value="14">14</option>	
+	            	</select>
+	            </div>
+
+				<div id="selections"> <!--START DIV FOR SPECIES SELECTION-->
+				  <label>Species: </label>
+	              <select id="species">
+	                  <option value = 'Total_Mosquitoes'>Total Mosquitoes</option>
+	                  <option value="tmale">Total Male</option>
+	                  <option value="tfemale">Total Female</option>
+	                  <option selected="selected" value="Culex_Tarsalis">Culex Tarsalis</option>
+	                  <option value="Culex_salinarius">Culex Salinarius</option>
+	                  <option value="Culex">Culex Other</option>
+	                  <option value="Culiseta">Culiseta</option>
+	                  <option value="Anopheles">Anopheles</option>
+	                  <option value="Aedes">Aedes</option>
+	                  <option value="Aedes_vexans">Aedes Vexans</option>	                 
+	                  <option value="Other">Other</option>
+	              </select>
+	            </div> <!--END DIV FOR SPECIES SELECTION-->
+
+	            <div id="selections"> <!--START DIV FOR COUNTY SELECTION-->
+	                <label>County: </label>
+	                <select id="countyOptions">
+	                <!--The county options are populated using an array from vars.js and the functions are located in map.js-->
+	                </select>
+	            </div> <!--END DIV FOR COUNTY SELECTION-->
+
+	            <div id="selections"> <!--START DIV FOR COUNTY SELECTION-->
+	                <label>Trap Location: </label>
+	                <select id="trapLocation">
+	                <!--SOME HOW UPDATE THE TRAP LOCATION OPTIONS FOR EACH COUNTY-->
+	                </select>
+	            </div>
+			</form>
+		</div><!--END DIV FOR THE MAP OPTIONS MENU-->
+<!---------------------------------------------END OF CREATE THE MAP AND MAP MENU------------------------------------------------------------------------------------>
+
+
+<!--Create how is the risk calculated-->
+	
+<!-- End how is the risk calculated-->
+
+<!--------------------------------------------CREATE LEGEND---------------------------------------------------------------------------------------------------------->
+	<div id='legend'></div>
+<!--------------------------------------------END OF CREATE LEGEND---------------------------------------------------------------------------------------------------->
+
+
+<!--------------------------------------------Create Chart, General data Header, and Chart Options-------------------------------------------------------------------->
+	<div id="chartOptions">
+		<center><strong>Chart Options</strong></center>
+		<form>
+			<div id="selections">
+					<label>Chart Type:</label>
+					<select id="year">
+						<option value="barChart">Some Chart Type</option>
+	                    <option selected="seleected" value="scatterPlot">Some Chart Type</option>
+	                    <option value="somethingElse">Some Chart Type</option>
+					</select>
+			</div>
+		</form>
+	</div>
+	<div id="genDataHeader">
+		<center><strong>GENERAL DATA</strong></center>
+	</div>
+	<form>
+		<div id='clearButton'>
+			<button type="reset" value="Reset">Reset</button>
+		</div>
+	</form>
+<!--------------------------------------------END THAT STUFF---------------------------------------------------------------->
+		
+		
+		
+		<!--<div id="refLinks">
+			<ul>
+			<li> <a href="http://www.und.edu"> UND Wepage </a> </li>
+			<li> <a href="https://engineering.und.edu/electrical/"> UND EE DEPT </a></li>
+			</ul>
+		</div>-->
+	</body>
+	<footer><!--ALL SPONSORS ARE LISTED HERE-->
+			<center><strong><font color="white">Some Footer</font></strong></center><br></font>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/200px-NASA_logo.svg.png" width="70" height="60"/>
+			<img src="http://www.dunncountynd.org/vertical/Sites/%7B565AA8FB-A7E9-4453-8706-895E3925615D%7D/uploads/nd_dept_of_health.gif" width="225" height="60"/>
+			<img src="http://www.gfmosquito.com/wp-content/themes/gfmosquito/images/logo-1.png" width= "175" height="60"/>
+			<img src="http://ndnasaepscor.und.edu/images/banner.jpg" width="300" height="60"/>
+	</footer>
+</html>
+

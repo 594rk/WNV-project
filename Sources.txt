@@ -1,0 +1,3 @@
+http://www.w3schools.com/googleapi/google_maps_basic.asp
+https://developers.google.com/fusiontables/docs/samples/adv_fusiontables // gives information about visualization
+https://developers.google.com/chart/interactive/docs/drawing_charts#drawchart // for drawing charts
