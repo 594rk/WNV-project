@@ -6,7 +6,8 @@
 <!docType html>
 <html>
 	<head>
-		<meta charset="UTF-8">	
+		<meta charset="UTF-8">
+		
 		<div id="headerLine">
 			<img src="http://engineering.und.edu/_files/images/logo-engineering-dark.png" width="650" height="70">
 			<!--<hr color=#669900 size="6" width="100%"/>-->
@@ -14,20 +15,24 @@
 		<title> ND TrapCount</title>
 		<h1>North Dakota Mosquito Virus Risk Assesment Map</h1><hr color=#669900 width="50%">
 		<link href="styles/main.css" rel="stylesheet" type="text/css" />
+		
 		<!--load jQuery 3.0-->
 		<script src="jquery-3.0.0.js"></script>
+		<!--Load googlemaps javascript API-->
+		<script src="https://www.google.com/jsapi"></script>
 		<!--lOAD MAP.JS-->
 		<script type="text/javascript" src="map.js"></script>
 		<!-- Load vars.js which includes data on counties -->
 		<script type="text/javascript" src="vars.js"></script>
 		<!--**************************************************************-->
 		<script async defer
-    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaDz7T5vCbVA_8JD2jA-GzGUCSrlD5ZI0">
+    		src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&key=AIzaSyAaDz7T5vCbVA_8JD2jA-GzGUCSrlD5ZI0&callback=initialize">
     	</script>
-
+    	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> <!--This line is for loading the charts library-->
     	<script type="text/javascript">
-    		window.addEventListener("load", initialize, false); //waits until the window is fully loaded before calling initialization of the map.
+    		//google.charts.load('current', {packages: ['corechart']}); //Load the current coreChart Library
     	</script>
+    	
 	</head>
 	
 	<body>
@@ -56,26 +61,6 @@
 					</select>
 				</div> <!--END DIV FOR YEAR SELECTION-->
 
-				<div id="selections">
-					<label>Week: </label>
-					<select id="weekOfSummer">
-						<option value="1">1</option>
-	                    <option value="2">2</option>
-	                    <option value="3">3</option>
-	                    <option value="4">4</option>
-	                    <option value="5">5</option>
-	                    <option value="6">6</option>
-	                    <option value="7">7</option>
-	                    <option value="8">8</option>
-	                    <option value="9">9</option>
-	                    <option value="10">10</option>
-	                    <option value="11">11</option>
-	                    <option value="12">12</option>
-	                    <option value="13">13</option>
-	                    <option value="14">14</option>	
-	            	</select>
-	            </div>
-
 				<div id="selections"> <!--START DIV FOR SPECIES SELECTION-->
 				  <label>Species: </label>
 	              <select id="species">
@@ -99,13 +84,11 @@
 	                <!--The county options are populated using an array from vars.js and the functions are located in map.js-->
 	                </select>
 	            </div> <!--END DIV FOR COUNTY SELECTION-->
-
-	            <div id="selections"> <!--START DIV FOR COUNTY SELECTION-->
-	                <label>Trap Location: </label>
-	                <select id="trapLocation">
-	                <!--SOME HOW UPDATE THE TRAP LOCATION OPTIONS FOR EACH COUNTY-->
-	                </select>
+	            <div id="selections">
+	            	<label>Display Trap Locations</label>
+	            	<input type="checkbox" id="showLoc" checked="true"/>
 	            </div>
+
 			</form>
 		</div><!--END DIV FOR THE MAP OPTIONS MENU-->
 <!---------------------------------------------END OF CREATE THE MAP AND MAP MENU------------------------------------------------------------------------------------>
@@ -121,37 +104,36 @@
 
 
 <!--------------------------------------------Create Chart, General data Header, and Chart Options-------------------------------------------------------------------->
-	<div id="chartOptions">
-		<center><strong>Chart Options</strong></center>
+		<div id="chartOptions">
+			<center><strong>Chart Options</strong></center>
+			<form>
+				<div id="selections">
+						<label>Chart Type:</label>
+						<select id="year">
+							<option value="barChart">Some Chart Type</option>
+		                    <option selected="seleected" value="scatterPlot">Some Chart Type</option>
+		                    <option value="somethingElse">Some Chart Type</option>
+						</select>
+				</div>
+			</form>
+		</div>
+
+		<div id="genDataHeader">
+			<center><strong>GENERAL DATA</strong></center>
+		</div>
 		<form>
-			<div id="selections">
-					<label>Chart Type:</label>
-					<select id="year">
-						<option value="barChart">Some Chart Type</option>
-	                    <option selected="seleected" value="scatterPlot">Some Chart Type</option>
-	                    <option value="somethingElse">Some Chart Type</option>
-					</select>
+			<div id='clearButtonDiv'>
+				<button  id ="clearButton" type="reset" value="Reset">Reset</button>
 			</div>
 		</form>
-	</div>
-	<div id="genDataHeader">
-		<center><strong>GENERAL DATA</strong></center>
-	</div>
-	<form>
-		<div id='clearButton'>
-			<button type="reset" value="Reset">Reset</button>
+		
+		<div id="Chart_Container"> <!--This container holds all four charts-->
+			<div id="pieChart"></div>
+			<div id="barChart"></div>
+			<div id="lineChart"></div>
+			<div id="otherChart"></div>
 		</div>
-	</form>
-<!--------------------------------------------END THAT STUFF---------------------------------------------------------------->
-		
-		
-		
-		<!--<div id="refLinks">
-			<ul>
-			<li> <a href="http://www.und.edu"> UND Wepage </a> </li>
-			<li> <a href="https://engineering.und.edu/electrical/"> UND EE DEPT </a></li>
-			</ul>
-		</div>-->
+	<!--------------------------------------------END THAT STUFF---------------------------------------------------------------->
 	</body>
 	<footer><!--ALL SPONSORS ARE LISTED HERE-->
 			<center><strong><font color="white">Some Footer</font></strong></center><br></font>

@@ -1,0 +1,281 @@
+html
+{
+
+}
+
+body
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(green), to(black)) fixed;
+}
+
+h1,h2
+{
+	color: black;
+	text-align: center;
+}
+
+footer
+{
+	position: relative;
+	background: black;
+	width: 100%;
+	top:1000px;	
+}
+
+p
+{
+	color: white;
+}
+
+div.map-options
+{
+	position: relative;
+	top: 25px;
+	left: 0px;
+	width: 800px;
+	height: 75px;
+	background: white;
+	border: 2px groove #0f3e0f;
+}
+#headerLine
+{
+	
+}
+#chartOptions
+{
+	position: relative;
+	top: -54px;
+	left: 1093px;
+	width: 800px;
+	height: 75px;
+	background: white;
+	border: 2px groove #0f3e0f;
+}
+#Chart_Container
+{
+	position: absolute;
+	left: 1100px;
+	top: 280px;
+	background: white;
+	width:800px;
+	height:700px;
+	border: 10px groove green;
+}
+#pieChart
+{
+	position: relative;
+	background: grey;
+	width: 400px;
+	height: 350px;
+}
+#barChart
+{
+	position: relative;
+	background: blue;
+	width: 400px;
+	height: 350px;
+}
+#lineChart
+{
+	position: relative;
+	background: green;
+	top: -350px;
+	left:400px;
+	width: 400px;
+	height: 350px;
+}
+#otherChart
+{
+	position: relative;
+	background: red;
+	top:-1050px;
+	left:400px;
+	width: 400px;
+	height: 350px;
+}
+#genDataHeader
+{
+	position: relative;
+	top: -133px;
+	left: 802px;
+	width: 290px;
+	height: 75px;
+	background: white;
+	border: 2px groove #0f3e0f;
+}
+div.createMap 
+{
+	position: absolute;
+	width: 800px;
+	height :700px;
+	top: 80px;
+}
+
+
+#green
+{
+	position: relative;
+	left: 30px;
+	top:10px;
+	width:80px;
+	height: 30px; 
+	background: green;
+}
+#lightGreen
+{
+	position: relative;
+	left: 30px;
+	top:10px;
+	width:80px;
+	height: 30px; 
+	background: #ccff33; 
+}
+#yellow
+{
+	position: relative;
+	left: 30px;
+	top:10px;
+	width:80px;
+	height: 30px; 
+	background: yellow;
+}
+#orange
+{
+	position: relative;
+	left: 30px;
+	top:10px;
+	width:80px;
+	height: 30px; 
+	background: #ff9900; 
+}
+#red
+{
+	position: relative;
+	left: 30px;
+	top:10px;
+	width:80px;
+	height: 30px; 
+	background: red;
+}
+#legend 
+{
+	position: fixed;
+	background: #FFF;
+	border: 3px groove grey;
+	margin: 10px;
+	padding: 5px;
+	width: 125px;
+	height: 185px;
+}
+
+#generalData
+{
+	color: black;
+	position: relative;
+	background: white;
+	
+	top: -215px;
+	left: 840px;
+	width: 220px;
+	height: 190px;
+	padding: 5px;
+	border: 3px groove  #0f3e0f;
+}
+
+#selections
+{
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	left: 0px;
+	padding-top: 0px;
+	padding-left: 70px;
+	padding-bottom: 10px;
+
+}
+#clearButton
+{
+	position: relative;
+	left: 925px;
+	top:-175px;
+}
+#refLinks
+{
+	position: relative;
+	bottom: -20px;
+	left: 0px;
+	height:0;
+}
+#sponsorLogos
+{
+
+}
+#map-canvas 
+{
+    width: auto;
+}
+
+#visualization 
+{
+	float: right;
+}
+
+#legend 
+{
+	background: #FFF;
+	margin: 10px;
+	padding: 5px;
+	width: 150px;
+}
+
+#legend p 
+{
+	font-weight: bold;
+	margin-top: 3px;
+}
+
+#legend div 
+{
+	clear: both;
+}
+
+#quickCountBox
+{
+	position: absolute;
+	text-align: center;
+	top: 315px;
+	left:725px;
+	height:50px;
+	width:50px;
+	background: black;
+	color:white;
+	border: 3px groove white;
+}
+.color 
+{
+	height: 12px;
+	width: 12px;
+	margin-right: 3px;
+	float: left;
+	display: block;
+}
+
+.high 
+{
+	color: #F00;
+}
+
+.medium 
+{
+	color: #0F0;
+}
+
+.low 
+{
+	color: #00F;
+}
+
+.high, .medium, .low 
+{
+	font-weight: bold;
+}

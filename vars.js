@@ -61,35 +61,13 @@ var COUNTIES = ["Cass",
                 "Slope"
                 ];
 
-var COLORS = [ //COLOR GRADIENT FROM GREEN TO RED || Update 6.27.16 WE ARE USING 'testCol' IN THE CODE BECAUSE IT GIVE A MORE DEFINED READING ABOUT LOW/MEDIUM/HIGH RISK | 21 levels
-    '#00FF00', //#00ff00
-    '#0DF200', //#0DF200
-    '#1AE600',
-    '#26D900',
-    '#33CC00',
-    '#40BF00',
-    '#4CB200',
-    '#59A600',
-    '#669900',
-    '#738C00',
-    '#808000',
-    '#8C7300',
-    '#996600',
-    '#A65900',
-    '#B24D00',
-    '#BF4000',
-    '#CC3300',
-    '#D92600',
-    '#E61900',
-    '#F20D00',
-    '#FF0000']
-
-var testCol = 
-[
-'#00FF00',
+var COLORS= [
+'#66ff33',
+'#ccff33',
 '#FFFF00',
-'#FF0000'
-]
+'#ff9900',
+'#cc3300'
+];
 
 var SPECIES = [
     'Total_Mosquitoes',
@@ -104,20 +82,3 @@ var SPECIES = [
     'Culiseta',
     'Other' ]
 
-
-/*==================================THIS IS WHERE I STORE THINGS THAT I MIGHT NEEED LATER======================
-
-#quickCountBox
-{
-    position: absolute;
-    text-align: center;
-    top: 315px;
-    left:725px;
-    height:50px;
-    width:50px;
-    background: black;
-    color:white;
-    border: 3px groove white;
-}
-
-*/
