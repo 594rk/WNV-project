@@ -16,8 +16,8 @@
 
 //initialize global variables that can be accessed by all functions
 var numComparisons= 0; //global variable
-var year='2015'
-var species= 'Culex_Tarsalis'
+var year='2015';
+var species= 'Culex_Tarsalis';
 var virus = 'WNV';
 var county = 'allCounties';
 var geometryTableId= '1zWT_7x8ZJdX4tujkR7w2fRTWthrNLeV0ob1Rz3uo';
@@ -37,7 +37,7 @@ var totOther;
 function initialize() 
 {
 	google.charts.load("current", {packages:["corechart"]});
-	google.charts.setOnLoadCallback(drawPieChart);
+	google.charts.setOnLoadCallback(updateSpeciesSum);
 	google.charts.setOnLoadCallback(drawLineChart);
 	//INITIALIZE variables
 	//alert("about to call drawChart");
@@ -77,7 +77,7 @@ function initialize()
 		//updateLayerQuery(map,layer,locationLayer);
 		differentUpdateQuery(map,layer,locationLayer);
 		updateLegendContent();
-		drawPieChart(year);
+    updateSpeciesSum();
 	});
 	google.maps.event.addDomListener(document.getElementById('species'),'change',function()//ONCE THIS EVENT FIRES, WE WANT THE MAP TO DISPLAY THE DENSITY OF THE SELECTED SPECIES BY COUNTY!
 	{
@@ -362,13 +362,25 @@ function getPercentage(totSpecies, totMosquitos)
 	totMosquitos=1;
 	return totSpecies/totMosquitos;
 }
-function updateSpeciesSum(year, species) //queries the fusion table and gets the sum of nay species for any year.
+function updateSpeciesSum() //queries the fusion table and gets the sum of nay species for any year.
 {
 	alert("year: "+year);
 	//callBack references the function we wantto call back once the query goes through.
-	var query = "SELECT SUM("+species+") FROM "+geometryTableId+" WHERE Year = '"+ year+"'";
+  
+  // List everything to query
+  var species_list = ['Anopheles', 'Culex', 'Culex_Tarsalis', 'Aedes', 'Aedes_vexans', 'Culiseta', 'Culex_salinarius', 'Other'];
+
+  // Begin building query
+  var query = "SELECT ";
+  for (i=0; i < species_list.length; i++){ // Loop through listed species
+    query += "SUM(" + species_list[i] + "),";
+  }
+  query = query.slice(0, -1); // Remove the extra comma
+	query += " FROM "+geometryTableId+" WHERE Year = '"+ year+"'"; // Specify table and year
 	query=encodeURI(query);
+
 	var URL = "https://www.googleapis.com/fusiontables/v2/query?sql="+query+"&key=AIzaSyAaDz7T5vCbVA_8JD2jA-GzGUCSrlD5ZI0";
+  console.log(URL);
 	//alert(URL);
 	$.ajax({ 								//understanding the asynchronous nature of javaScript.
 		type: 'GET', //get is the default
@@ -376,6 +388,9 @@ function updateSpeciesSum(year, species) //queries the fusion table and gets the
 		success: function(data)
 		{
 			alert("Success");
+      var arrayOfNumbers = data['rows'][0].map(Number); // Convert to array of numbers
+      drawPieChart(arrayOfNumbers);
+
 		},  //Here we call back drawChart where the result is needed.
 		error: function(e)
 		{
@@ -383,22 +398,22 @@ function updateSpeciesSum(year, species) //queries the fusion table and gets the
 		}
 	});
 } 
-function drawPieChart(year) 
+function drawPieChart(data2) 
 {
-	updateSpeciesSum(year, species);
 	alert("In pie chart with year " + year);
 	var data = google.visualization.arrayToDataTable(
 	[
 		['Species', 'Count'],
-		['Anopheles',10],
-		['Culex',11],
-		['Culex Tarsalis',2],
-		['Aedes',  2],
-		['Aedes_vexans', 2],
-		['Culiseta',    7],
-		['Culex_salinarius',1],
-		['Other', 4]
-	]);
+		['Anopheles',       data2[0]], // Array is in order of query
+		['Culex',           data2[1]],
+		['Culex Tarsalis',  data2[2]],
+		['Aedes',           data2[3]],
+		['Aedes_vexans',    data2[4]],
+		['Culiseta',        data2[5]],
+		['Culex_salinarius',data2[6]],
+		['Other',           data2[7]]
+	],
+  false);
 
 	var options = 
 	{
